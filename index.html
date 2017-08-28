@@ -1,0 +1,37 @@
+<script>
+document.addEventListener("deviceReady", deviceReady, false);
+
+function deviceReady() {
+    // Now safe to use the PhoneGap API
+	var internet;
+	document.addEventListener('online',online,false);
+	document.addEventListener('offline',offline,false);
+
+
+	function online(){
+
+		internet=true;
+	}
+
+	function offline(){
+		internet=false;
+	}
+
+	if(internet){
+
+	window.location = "https://www.cenmax.in/app/";
+
+	}else{
+	function alertDismissed() {
+			window.location = "app/index.html";
+	}
+
+	navigator.notification.alert(
+		'We Identified that you are not Connected to Internet. This may affect some Features like Fonts, Icons & Live Chat System. Would you like to proceed?',  // message
+		alertDismissed,         // callback
+		'Offline',            // title
+		'Yes'                  // buttonName
+		);
+	}
+}
+</script>
